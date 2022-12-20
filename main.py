@@ -1,13 +1,16 @@
-from FSM import FSM
+from FiniteStateMachine import FSM
+from FiniteStateMachineExceptions import *
 
+input = open("input.txt")
 
-alphabet2 = {'\n',' ','\t'}
-
-line = "int "
-
-line_as_list = list(line)
+input_as_list = list(input.read())
 
 machine = FSM()
 
-for value in line_as_list:
-    machine.send_value(value)
+for value in input_as_list:
+    #try-catch
+        machine.send_value(value)
+
+
+if not machine.semicolon_exist:
+    raise InvalidExpressionException("Expected ';' at end of declaration")
